@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <script type="text/javascript" src="../Script/angular.min.js"></script>
+    <script type="text/javascript" src="../Script/bootstrap.js"></script>
+    <script type="text/javascript" src="../Script/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Script/bootstrap.css">
+    <style type="text/css">
+        body {
+        background-color: #EBEBE0;
+        }
+
+        #collR {
+        background-color: #4D94DB;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        /* 	font-family: 'Open Sans','sans-serif'; */
+        }
+
+        #collF {
+        background-color: #A3C8EC;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        }
+
+        #collR:HOVER {
+        background-color: #0066CC;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+        /* 	font-family: 'Open Sans','sans-serif'; */
+        }
+
+        #collF:HOVER {
+        background-color: #7699BA;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        }
+
+        #collE {
+        background-color: #4D94DB;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        /* 	font-family: 'Open Sans','sans-serif'; */
+        }
+
+        #collE:HOVER {
+        background-color: #0066CC;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+        /* 	font-family: 'Open Sans','sans-serif'; */
+        }
+
+
+    </style>
+    <script type="text/javascript">
+	$(document).ready(function() {
+		$(".Rogers").hide();
+		$(".Fido").hide();
+		$(".Esis").hide();
+		$("#collR").click(function() {
+			$(".Rogers").show();
+			$(".Fido").hide();
+			$(".Esis").hide();
+		});
+		$("#collF").click(function() {
+			$(".Rogers").hide();
+			$(".Fido").show();
+			$(".Esis").hide();
+		});
+		$("#collE").click(function() {
+			$(".Rogers").hide();
+			$(".Fido").hide();
+			$(".Esis").show();
+		});
+	});
+	function UserController($scope, $http) {
+		$scope.user = {};
+
+		$scope.createUser = function() {
+
+			$http(
+					{
+						method : 'POST',
+						url : 'http://localhost:8080/ResponsiveUi/ResponsiveUIServletRogers',
+						headers : {
+							'Content-Type' : 'application/json'
+						},
+						data : $scope.user
+					}).success(function(data) {
+				$scope.status = data;
+			});
+		};
+	}
+	 function UserControllerFido($scope, $http) {
+		$scope.user = {};
+
+		$scope.createUserFido = function() {
+
+			$http(
+					{
+						method : 'POST',
+						url : 'http://localhost:8080/ResponsiveUi/ResponsiveUIServletFido',
+						headers : {
+							'Content-Type' : 'application/json'
+						},
+						data : $scope.user
+					}).success(function(data) {
+				$scope.status = data;
+			});
+		};
+	}
+	function UserControllerEsis($scope, $http) {
+		$scope.user = {};
+
+		$scope.createUserEsis = function() {
+
+			$http(
+					{
+						method : 'POST',
+						url : 'http://localhost:8080/ResponsiveUi/ResponsiveUIServletEsis',
+						headers : {
+							'Content-Type' : 'application/json'
+						},
+						data : $scope.user
+					}).success(function(data) {
+				$scope.status = data;
+			});
+		};
+	} 
+</script>
+    <title>Bootstrap/AngularJS</title>
+</head>
+<body>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-sm-4 col-md-4" id="collR">Rogers</div>
+        <div class="col-sm-4 col-md-4" id="collF">Fido</div>
+        <div class="col-sm-4 col-md-4" id="collE">Esis</div>
+    </div>
+
+</div>
+<div class="Rogers">
+
+
+    <form ng-controller="UserController" ng-submit="createUser()">
+        <h3>Add New User For Rogers</h3>
+        <label>Name: </label> <input type="text" id="name" name="name"
+                                     ng-model="user.name" placeholder="User Name">
+        <button class="btn btn-primary">Add</button>
+        <br /> <label>{{status}}</label>
+    </form>
+</div>
+<div class="Fido">
+    <form ng-controller="UserControllerFido" ng-submit="createUserFido()">
+        <h3>Add New User For Fido</h3>
+
+        <label>Name: </label> <input type="text" id="name" name="name"
+                                     ng-model="user.name" placeholder="User Name">
+
+
+        <button class="btn btn-primary">Add</button>
+        <br /> <label>{{status}}</label>
+    </form>
+</div>
+<div class="Esis">
+    <form ng-controller="UserControllerEsis" ng-submit="createUserEsis()">
+        <h3>Add New User For Esis</h3>
+
+        <label>Name: </label> <input type="text" id="name" name="name"
+                                     ng-model="user.name" placeholder="User Name">
+
+        <button class="btn btn-primary">Add</button>
+        <br /> <label>{{status}}</label>
+    </form>
+</div>
+
+</body>
+</html>

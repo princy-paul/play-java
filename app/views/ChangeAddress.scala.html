@@ -1,95 +1,72 @@
 @(message: String)
 
-@main("Change Address") {
-<div id="header" style="padding: 0 200px 50px 200px;"><img src="/assets/images/logofido.png" width="140" height="45"/></div>
+@main("Change Address") {<div class="container">
+    <div class="row">
+        <div id="header" class="col-sm-12 col-lg-12 col-md-12 col-xs-12"><img src="/assets/images/logofido.png"
+                                                                              width="140" height="45"/>
+        </div>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div><h1>Change address</h1></div>
+        </div>
 
-<form method="post">
-    <div class="container-fluid" style="padding: 0 200px 50px 200px;" >
-        <div class="row">
-            <div class="col-sm-6 " id="collR">
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div style="padding-top:15px;"><h4>Account Number</h4></div>
+            <div><p>566234902</p></div>
+        </div>
 
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div><h3>Current Address:</h3></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <div style="padding:10px;background-color:#e9e9e9; border-bottom:1px solid #D4D4D4;height:70px;width:295px;">
+                <b>Address:</b>
 
-                <table cellspacing="0" cellpadding="0" border="0" width="635px">
-                    <tr>
-
-                        <td>
-
-
-                            <div id="custom_content"><h1>Change address</h1>
-                            </div>
-
-                        </td>
-
-
-                    </tr>
-                    <tr>
-                        <td class="changeAdd_accountNoLabel">
-                          <h3> Account number</h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="changeAdd_accountNoValue">
-                            566234902
-                        </td>
-                    </tr>
-                    <tr style="height:70px;">
-                        <td width="635px" colspan="3">
-                            <div style="padding-top:15px">
-                                <b>Current address:</b>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="height70px">
-                        <td width="295px" style="background-color: #e9e9e9;
-                            border-bottom: 1px solid #D4D4D4" valign="middle">
-                            <div style="padding-top:15px;padding-left:15px">
-                                <b>Address:</b><br/>
-                                1102 10 LISA St BRAMPTON
-                            </div>
-                            <br/>
-                        </td>
-                        <td width="15px">&nbsp;</td>
-                        <td width="295px" style="background-color: #e9e9e9;
-                            border-bottom: 1px solid #D4D4D4" valign="middle">
-                            <div style="padding-top:15px;padding-left:15px">
-                                <b>City:</b><br/>
-                                TORONTO
-                            </div>
-                            <br/>
-                        </td>
-                    </tr>
-
-                    <tr class="height70px" style="height:70px;">
-                        <td width="295px" valign="middle" style="border-top:1px solid #ffffff;">
-                            <div style=padding-left:15px;">
-                                <b>Province:</b><br/>
-                                ON
-                            </div>
-                        </td>
-                        <td width="15px">&nbsp;</td>
-                        <td width="295px" valign="middle" style="border-top:1px solid #ffffff;">
-                            <div style=padding-left:15px;">
-                                <b>Postal code:</b><br/>
-                                L6T4N4
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+                <p>1102 10 LISA St BRAMPTON</p>
             </div>
-            <div class="col-sm-6 " id="collF">
-                <div class="floatLeft" style="margin-left: 35px; margin-top: 50px;float:left">
-                    <img src="/assets/images/CHANGE_ADDRESS_DOG2.png"></div>
+            <div id="mobileColor">
+                <div style="padding:10px;height:70px;width:295px;"><b>Province:</b>
+
+                    <p>ON</p>
+                </div>
             </div>
         </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            <div style="padding:10px;background-color:#e9e9e9; border-bottom:1px solid #D4D4D4;height:70px;width:295px;">
+                <b>City:</b>
+
+                <p>TORONTO</p>
+            </div>
+            <div id="mobileColor">
+                <div style="padding:10px;height:70px;width:295px;"><b>Postal Code:</b>
+
+                    <p>L6T4N4</p>
+                </div>
+            </div>
+        </div>
+        <div class="visible-lg col-lg-2">
+            <img src="/assets/images/CHANGE_ADDRESS_DOG2.png">
+        </div>
+
+    </div>
         <div style="border-top:1px solid #D4D4D4">
         <h3>Moving?</h3>
         <p>If you change your address now, be aware that your latest invoice may be in the process of being sent to your old address. If that's the case, you'll still be responsible for the payment of that invoice.</p>
         <p>If you've already made a future-dated request, be advised that the information won't appear on this page until after the effective date. You can however submit a new request that will cancel the old one.</p>
         </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3" id="place">
+            <div  class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place">
                 <div>
                 <label for="">Date of address change:</label>
                     </div>
@@ -112,44 +89,43 @@
                     </select>
                 </div>
                 <div class="input-group" style="float:left;width:80px; margin-left:10px;">
-                    <select class="form-control" >
+                    <select class="form-control">
                         <option>2014</option>
                         <option>2015</option>
 
                     </select>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3" id="place">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place">
 
                 <label for="">Apt/Suite:</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="" ng-model="">
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3" id="place">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place">
 
                 <label for="">Postal code*:</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="" ng-model="">
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3" style="padding-bottom:10px; margin-right:10px;width:310px;">
+
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place2">
 
                 <label for="">Street number*:</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="" ng-model="">
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3" style="padding-bottom:10px; margin-right:10px;width:310px;">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place2">
 
                 <label for="">City*:</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="" ng-model="">
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3" style=" padding-bottom:10px; margin-right:10px;width:310px;">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place2">
                 <div style="float:left;">
                     <label for="">Contact number 1*:</label>
                     <div class="input-group"  >
@@ -163,16 +139,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3" id="place">
+
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place">
 
                 <label for="">Street name*:</label>
                 <div class="input-group">
                     <input class="form-control" type="text" id="" ng-model="">
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3" id="place"">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place">
 
                 <label for="">Province*:</label>
                 <div class="input-group" >
@@ -185,7 +160,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3" id="place">
+            <div class="col-xs-12 col-sm-6 col-md-4" id="place">
 
                 <label for="">Contact number2 (optional):</label>
                 <div class="input-group">
@@ -193,13 +168,13 @@
                 </div>
             </div>
         </div>
-    <div class="floatLeft" style="margin-top: 25px;float:left">
+    <div style="margin-top:20px;float:left;">
         <a href=""><img src="/assets/images/button-next-en.png"></a>
         <a href=""><img src="/assets/images/button-cancel-en.png"></a>
     </div>
     </div>
-    </div>
-    </div>
+
+
 </form>
 
 

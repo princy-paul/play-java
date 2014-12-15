@@ -19,4 +19,8 @@ public class Application extends Controller {
 
         return ok(ChangeAddress.render("Your new application is ready."));
     }
+    public static Result XX() {
+
+        return ok(xx.render("Your new application is ready."));
+    }
 }

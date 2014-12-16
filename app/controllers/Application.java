@@ -23,4 +23,8 @@ public class Application extends Controller {
 
         return ok(xx.render("Your new application is ready."));
     }
+    public static Result confirmation() {
+
+        return ok(confirmation.render("Your new application is ready."));
+    }
 }

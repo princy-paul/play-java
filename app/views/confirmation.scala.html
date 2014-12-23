@@ -1,8 +1,8 @@
 @(message: String)
 
-@main("Change Address") {<div class="container">
+@main("Confirmation") {<div class="container">
     <div class="row">
-        <div id="header" class="col-xs-12"><img src="/assets/images/logofido.png"
+        <div id="header" class="col-xs-12"><<img src="@routes.Assets.at("images/logofido.png")"
                                                                               width="140" height="45"/>
         </div>
     </div>
@@ -18,7 +18,7 @@
                     <p>Thank you for using fido.ca to update your mailing address.</p>
                 </div>
                 <div class="visible-lg col-lg-6">
-                    <img src="/assets/images/CHANGE_ADDRESS_DOG2.png">
+                    <<img src="@routes.Assets.at("images/CHANGE_ADDRESS_DOG2.png")">
                 </div>
             </div>
 
@@ -26,8 +26,8 @@
 
     </div>
     <div style="margin:20px 20px;float:left;">
-        <a href=""><img src="/assets/images/button-backtomyaccount-en.png"></a>
-        <a href=""><img src="/assets/images/button-print-en.png"></a>
+        <a href="@routes.Application.index()"><img src="@routes.Assets.at("images/button-backtomyaccount-en.png")"></a>
+        <a href=""><img src="@routes.Assets.at("images/button-print-en.png")"></a>
     </div>
 
     </div>

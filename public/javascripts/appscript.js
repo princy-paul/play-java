@@ -1,4 +1,6 @@
-function enableAcceptButton() {
+
+
+			function enableAcceptButton() {
 				var acceptBtn = document.getElementById("acceptRadioButton");
 				var declineBtn = document.getElementById("declineRadioButton");
 				if (acceptBtn.disabled == true) {
@@ -9,18 +11,39 @@ function enableAcceptButton() {
 			}
 
 
-$(document).ready(function(){
-    $("#accept").click(function(){
-    var id=$("input:radio[name='Ecare_ChangeAddress_1_1wlw-radio_button_group_key']:checked").val();
-    if(id==null){
-        alert("Please select an option");
-        return false;
+
+function UserController($scope,$http) {
+  $scope.init = function() {
+
+			$http(
+					{
+						method : 'POST',
+						url : 'http://localhost:9000/CurrentAddress',
+						headers : {
+							'Content-Type' : 'application/json'
+						},
+						data :$scope
+					}).success(function(Response) {
+				$scope.status = Response;
+			});
+		}
+
+$scope.formError = {}
+    $scope.register = function() {
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:9000/register',
+            headers: {'Content-Type': 'application/json'},
+            data: $scope.user
+        }).success(function (response) {
+
+            alert(hi);
+
+        }).error(function (response) {
+
+                $scope.formError = angular.copy(response);
+
+        });
     }
-    else{
-        return true;
-        }
-    });
-});
-
-
-
+}

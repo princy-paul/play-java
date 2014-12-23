@@ -1,14 +1,22 @@
-@(message: String)
+@import play.data.validation.ValidationError;
+@import play.i18n.Messages;
+@import Beans.ChangeAddressUserVO;
 
-@main("Change Address") {<div class="container">
-    <div class="row">
-        <div id="header" class="col-sm-12 col-lg-12 col-md-12 col-xs-12"><img src="/assets/images/logofido.png"
-                                                                              width="140" height="45"/>
-        </div>
+@(message: Form[ChangeAddressUserVO])
+
+@main("Change Address") {
+<div class="container">
+
+
+    <div id="header" class="col-sm-12 col-lg-12 col-md-12 col-xs-12"><img src="@routes.Assets.at("images/logofido.png")"
+        width="140" height="45"/>
     </div>
+</div>
 </div>
 
 <div class="container">
+<div ng-app="" ng-controller="UserController" ng-init="init()">
+
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div><h1>Change address</h1></div>
@@ -18,7 +26,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div style="padding-top:15px;"><h4>Account Number</h4></div>
-            <div><p>566234902</p></div>
+            <div><p>{{status.accountNumber}}</p></div>
         </div>
 
     </div>
@@ -32,150 +40,262 @@
             <div style="padding:10px;background-color:#e9e9e9; border-bottom:1px solid #D4D4D4;height:70px;width:295px;">
                 <b>Address:</b>
 
-                <p>1102 10 LISA St BRAMPTON</p>
+                <p>{{status.apt+" "+status.streetNumber+" "+status.streetName }}</p>
             </div>
             <div id="mobileColor">
                 <div style="padding:10px;height:70px;width:295px;"><b>Province:</b>
 
-                    <p>ON</p>
+                    <p>{{status.province}}</p>
                 </div>
             </div>
         </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+        <div class="col-xs-1"></div>
+        <div class="col-md-3 col-sm-4 col-xs-12">
             <div style="padding:10px;background-color:#e9e9e9; border-bottom:1px solid #D4D4D4;height:70px;width:295px;">
                 <b>City:</b>
 
-                <p>TORONTO</p>
+                <p>{{status.city}}</p>
             </div>
             <div id="mobileColor">
                 <div style="padding:10px;height:70px;width:295px;"><b>Postal Code:</b>
 
-                    <p>L6T4N4</p>
+                    <p>{{status.postalCode}}</p>
                 </div>
             </div>
         </div>
         <div class="visible-lg col-lg-2">
-            <img src="/assets/images/CHANGE_ADDRESS_DOG2.png">
+            <img src="@routes.Assets.at("images/CHANGE_ADDRESS_DOG2.png")">
         </div>
 
     </div>
-        <div style="border-top:1px solid #D4D4D4">
-        <h3>Moving?</h3>
-        <p>If you change your address now, be aware that your latest invoice may be in the process of being sent to your old address. If that's the case, you'll still be responsible for the payment of that invoice.</p>
-        <p>If you've already made a future-dated request, be advised that the information won't appear on this page until after the effective date. You can however submit a new request that will cancel the old one.</p>
-        </div>
-            <div  class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4" id="date" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-                <div>
-                <label for="">Date of address change:</label>
-                    </div>
-                <div class="input-group" style="float:left;width:80px;">
-                        <select class="form-control" >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                </div>
-                <div class="input-group" style="float:left;width:80px; margin-left:10px;" >
-                    <select class="form-control" >
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="input-group" style="float:left;width:80px; margin-left:10px;">
-                    <select class="form-control">
-                        <option>2014</option>
-                        <option>2015</option>
+</div>
 
-                    </select>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4" id="suite" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
+<div style="border-top:1px solid #D4D4D4">
+    <h3>Moving?</h3>
 
-                <label for="">Apt/Suite:</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" id="" ng-model="">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4" id="pCode" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
+    <p>If you change your address now, be aware that your latest invoice may be in the process of being sent to your
+        old
+        address. If that's the case, you'll still be responsible for the payment of that invoice.</p>
 
-                <label for="">Postal code*:</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" id="" ng-model="">
-                </div>
-            </div>
+    <p>If you've already made a future-dated request, be advised that the information won't appear on this page
+        until
+        after the effective date. You can however submit a new request that will cancel the old one.</p>
+</div>
+<form action="@routes.Application.register" method="post">
+<div class="row">
 
-            <div class="col-xs-12 col-sm-6 col-md-4" id="sNumber" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-
-                <label for="">Street number*:</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" id="" ng-model="">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4" id="city" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-
-                <label for="">City*:</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" id="" ng-model="">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4" id="contact1" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-                <div style="float:left;">
-                    <label for="">Contact number 1*:</label>
-                    <div class="input-group"  >
-                        <input class="form-control" type="text" id="" ng-model="">
-                    </div>
-                </div>
-                <div style="float:left;width:50px; margin-left:10px;">
-                    <label for="">Ext.:</label>
-                    <div class="input-group" >
-                        <input class="form-control" type="text" id="" ng-model="">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-4" id="sName" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-
-                <label for="">Street name*:</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" id="" ng-model="">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4" id="province" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-
-                <label for="">Province*:</label>
-                <div class="input-group" >
-                    <select class="form-control" >
-                        <option>Alberta</option>
-                        <option>Manitoba</option>
-                        <option>Ontario</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4" id="contact2" style="width:350px;margin-top:10px;padding-bottom:10px;margin-right:10px;">
-
-                <label for="">Contact number2 (optional):</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" id="" ng-model="">
-                </div>
-            </div>
-        </div>
-    <div style="margin:20px 20px;float:left;">
-        <a href=""><img src="/assets/images/button-next-en.png"></a>
-        <a href=""><img src="/assets/images/button-cancel-en.png"></a>
+<div class="col-xs-12 col-sm-6 col-md-4" id="date">
+    <div>
+        <label for="">Date of address change:</label>
     </div>
+    <div class="input-group" style="float:left;width:80px;">
+        <select class="form-control" name="Date">
+            @if(message.data().get("Date")!=null){
+            <option selected value=@message.data().get("Date")>@message.data().get("Date")</option>
+            <option disabled>--------</option>
+            }
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+
+        </select>
+
+    </div>
+    <div class="input-group" style="float:left;width:80px; margin-left:10px;">
+        <select class="form-control" name="Month">
+            @if(message.data().get("Month")!=null){
+            <option selected value=@message.data().get("Month")>@message.data().get("Month")</option>
+            <option disabled>--------</option>
+            }
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+
+
+    </div>
+    @if(message.errors.get("Month")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("Month").get(0).message())</p>
+    }
+    <div class="input-group" style="float:left;width:80px; margin-left:10px;">
+        <select class="form-control" name="Year">
+            @if(message.data().get("Year")!=null){
+            <option selected value=@message.data().get("Year")>@message.data().get("Year")</option>
+            <option disabled>--------</option>
+            }
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+
+        </select>
+    </div>
+    @if(message.errors.get("Year")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("Year").get(0).message())</p>
+    }
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-4" id="suite">
+
+    <label for="">Apt/Suite:</label>
+
+    <div class="input-group">
+        <input class="form-control" type="text" id="" ng-model="" name="Apt"
+               value=@message.data().get("Apt")>
     </div>
 
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4" id="pCode">
 
+    <label for="">Postal code*:</label>
+
+    <div class="input-group">
+        <input class="form-control" type="text" ng-model="" name="PostalCode"
+               value=@message.data().get("PostalCode")>
+    </div>
+    @if(message.errors.get("PostalCode")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("PostalCode").get(0).message())</p>
+    }
+
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-4" id="sNumber">
+
+    <label for="">Street number*:</label>
+
+
+    <div class="input-group">
+        <input class="form-control" type="text" ng-model="" name="StreetNumber"
+               value=@message.data().get("StreetNumber")>
+    </div>
+    @if(message.errors.get("StreetNumber")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("StreetNumber").get(0).message())</p>
+    }
+
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4" id="city">
+
+    <label for="">City*:</label>
+
+    <div class="input-group">
+        <input class="form-control" type="text" ng-model="" name="City" value=@message.data().get("City")>
+    </div>
+    @if(message.errors.get("City")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("City").get(0).message())</p>
+    }
+
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4" id="contact1">
+
+    <div style="float:left;">
+        <label for="">Contact number 1*:</label>
+
+        <div class="input-group">
+            <input class="form-control" type="text" ng-model="" name="ContactNumber"
+                   value=@message.data().get("ContactNumber")>
+        </div>
+    </div>
+
+    <div style="float:left;width:50px; margin-left:10px;">
+        <label for="">Ext.:</label>
+
+        <div class="input-group">
+            <input class="form-control" type="text" ng-model="" name="Ext" value=@message.data().get("Ext")>
+        </div>
+    </div>
+    @if(message.errors.get("ContactNumber")!=null){
+    <p style="color:red;float:left;">@Messages.get(message.errors.get("ContactNumber").get(0).message())</p>
+    }
+
+</div>
+
+
+<div class="col-xs-12 col-sm-6 col-md-4" id="sName">
+
+    <label for="">Street name*:</label>
+
+    <div class="input-group">
+        <input class="form-control" type="text" ng-model="" name="StreetName"
+               value=@message.data().get("StreetName")>
+    </div>
+    @if(message.errors.get("StreetName")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("StreetName").get(0).message())</p>
+    }
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4" id="province">
+
+    <label for="">Province*:</label>
+
+    <div class="input-group">
+        <select class="form-control" name="Province">
+            @if(message.data().get("Province")!=null){
+            <option selected value=@message.data().get("Province")>@message.data().get("Province")</option>
+            <option disabled>--------</option>
+            }
+            <option value="Alberta">Alberta</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="Ontario">Ontario</option>
+
+        </select>
+    </div>
+    @if(message.errors.get("Province")!=null){
+    <p style="color:red;">@Messages.get(message.errors.get("Province").get(0).message())</p>
+    }
+
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4" id="contact2">
+    <label for="">Contact number2 (optional):</label>
+
+    <div class="input-group">
+        <input class="form-control" type="text" ng-model="" name="SecondContactNumber"
+               value=@message.data().get("SecondContactNumber")>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-xs-12" style="margin-bottom:10px; margin-top:10px;">
+        <button><img src="@routes.Assets.at("images/button-next-en.png")"></button>
+    </div>
+</div>
 </form>
+
+
+</div>
 
 
 }
